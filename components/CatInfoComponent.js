@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { Tile, Card, Icon } from 'react-native-elements'
 import { CATS } from '../shared/cats'
+import { baseUrl } from '../shared/baseUrl'
 import * as Animatable from 'react-native-animatable'
 
 const RenderCat = ({ cat }) => {
@@ -10,7 +11,7 @@ const RenderCat = ({ cat }) => {
       <Card
         title={cat.name}
         titleStyle={{ fontSize: 36, textTransform: 'uppercase' }}
-        image={require('../assets/images/cat-head-2.jpg')}
+        image={{ uri: baseUrl + cat.image }}
         imageStyle={{ height: 350 }}
       >
         <Text style={{ fontSize: 24, textAlign: 'center', padding: 10 }}>

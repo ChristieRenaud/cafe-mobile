@@ -11,7 +11,7 @@ export default class Home extends Component {
       <View style={{ flex: 1 }}>
         <Tile
           title="Calico Cafe"
-          titleStyle={{ fontSize: 54 }}
+          titleStyle={{ fontSize: 54, fontWeight: 'bold' }}
           caption="Relax with Coffee and Cats"
           captionStyle={{ fontSize: 24 }}
           featured

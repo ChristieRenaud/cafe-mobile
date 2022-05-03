@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native'
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Constants from 'expo-constants'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from 'react-navigation'
@@ -7,6 +7,7 @@ import Home from './HomeComponent'
 import Visit from './VisitComponent'
 import Adopt from './AdoptComponent'
 import CatInfo from './CatInfoComponent'
+import { baseUrl } from '../shared/baseUrl'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { Icon } from 'react-native-elements'
 // import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'
@@ -27,7 +28,7 @@ const HomeNavigator = createStackNavigator(
       headerRight: (
         <View style={{ flexDirection: 'row' }}>
           <Image
-            source={require('../assets/images/white_silhouette.png')}
+            source={{ uri: baseUrl + '/images/white_silhouette.png' }}
             style={{ height: 25, width: 25, marginLeft: 10 }}
           />
           <Text style={styles.logoTextStyle}>Calico Cafe</Text>
@@ -53,13 +54,17 @@ const AdoptNavigator = createStackNavigator(
         color: '#fff',
       },
       headerRight: (
-        <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity
+          style={{ flexDirection: 'row' }}
+          onPress={() => navigation.navigate('Home')}
+        >
           <Image
-            source={require('../assets/images/white_silhouette.png')}
+            source={{ uri: baseUrl + '/images/white_silhouette.png' }}
             style={{ height: 25, width: 25, marginLeft: 10 }}
           />
           <Text style={styles.logoTextStyle}>Calico Cafe</Text>
-        </View>
+        </TouchableOpacity>
+        // </View>
       ),
     }),
   },
@@ -79,13 +84,16 @@ const VisitNavigator = createStackNavigator(
         color: '#fff',
       },
       headerRight: (
-        <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity
+          style={{ flexDirection: 'row' }}
+          onPress={() => navigation.navigate('Home')}
+        >
           <Image
-            source={require('../assets/images/white_silhouette.png')}
+            source={{ uri: baseUrl + '/images/white_silhouette.png' }}
             style={{ height: 25, width: 25, marginLeft: 10 }}
           />
           <Text style={styles.logoTextStyle}>Calico Cafe</Text>
-        </View>
+        </TouchableOpacity>
       ),
     }),
   },
@@ -101,14 +109,12 @@ const TabNavigator = createBottomTabNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state
-        // let IconComponent = Ionicons;
-        // let iconName;
+
         if (routeName === 'Home') {
           return (
             <Icon
               name="home"
               type="font-awesome"
-              //iconStyle={styles.stackIcon}
               fontSize={25}
               color={tintColor}
             />
@@ -118,7 +124,6 @@ const TabNavigator = createBottomTabNavigator(
             <Icon
               name="paw"
               type="font-awesome"
-              //iconStyle={styles.stackIcon}
               fontSize={25}
               color={tintColor}
             />
@@ -128,7 +133,6 @@ const TabNavigator = createBottomTabNavigator(
             <Icon
               name="eye"
               type="font-awesome"
-              //iconStyle={styles.stackIcon}
               fontSize={25}
               color={tintColor}
             />

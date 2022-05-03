@@ -2,7 +2,7 @@ export const CATS = [
   {
     id: `1`,
     name: 'Fluffy',
-    image: '../assets/images/cat-head-1.jpg',
+    image: '/images/cat-head-1.jpg',
     alt: 'Light-colored cat close up.',
     color: '',
     type: 'American Shorthair',
@@ -14,7 +14,7 @@ export const CATS = [
   {
     id: `2`,
     name: 'Princess',
-    image: '/assets/images/cat-head-2.jpg',
+    image: '/images/cat-head-2.jpg',
     alt: 'Striped white gray and white cat close up.',
     color: '',
     type: 'Calico',
@@ -26,7 +26,7 @@ export const CATS = [
   {
     id: `3`,
     name: 'Tiger',
-    image: '/assets/images/cat-head-3.jpg',
+    image: '/images/cat-head-3.jpg',
     alt: 'Striped gray and white cat close up.',
     color: 'gray',
     type: 'Calico',
@@ -38,7 +38,7 @@ export const CATS = [
   {
     id: `4`,
     name: 'Carrot',
-    image: '/assets/images/cat-head-4.jpg',
+    image: '/images/cat-head-4.jpg',
     alt: 'Orange cat close up.',
     color: 'orange',
     type: 'American Shorthair',
@@ -50,7 +50,7 @@ export const CATS = [
   {
     id: `5`,
     name: 'Jasper',
-    image: '/assets/images/cat-head-1.jpg',
+    image: '/images/cat-head-1.jpg',
     alt: 'Light-colored cat close up.',
     color: '',
     type: 'American Shorthair',
@@ -62,7 +62,7 @@ export const CATS = [
   {
     id: `6`,
     name: 'Fifi',
-    image: '/assets/images/cat-head-2.jpg',
+    image: '/images/cat-head-2.jpg',
     alt: 'Striped white gray and white cat close up.',
     color: '',
     type: 'Calico',
@@ -74,7 +74,7 @@ export const CATS = [
   {
     id: `7`,
     name: 'Doc',
-    image: '/assets/images/cat-head-3.jpg',
+    image: '/images/cat-head-3.jpg',
     alt: 'Striped gray and white cat close up.',
     color: 'gray',
     type: 'Calico',
@@ -86,7 +86,7 @@ export const CATS = [
   {
     id: `8`,
     name: 'Pumpkin',
-    image: '/assets/images/cat-head-4.jpg',
+    image: '/images/cat-head-4.jpg',
     alt: 'Orange cat close up.',
     color: 'orange',
     type: 'American Shorthair',

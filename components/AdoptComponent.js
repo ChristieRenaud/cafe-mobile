@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import { Tile, Card } from 'react-native-elements'
 import { CATS } from '../shared/cats'
+import { baseUrl } from '../shared/baseUrl'
 
 class Adopt extends Component {
   constructor(props) {
@@ -27,18 +28,29 @@ class Adopt extends Component {
     const RenderItem = ({ item }) => {
       return (
         <TouchableOpacity
+          style={{ width: '40%', margin: 10 }}
           onPress={() => {
             navigate('CatInfo', { catId: item.id })
             console.log(`Pressed ${item.id}`)
           }}
         >
           <Card
-            title={item.name}
-            image={require('../assets/images/cat-head-1.jpg')}
-            imageStyle={{ height: 250 }}
-            wrapperStyle={{ marginHorizontal: 20 }}
+            image={{ uri: baseUrl + item.image }}
+            wrapperStyle={{
+              marginHorizontal: 10,
+              paddingVertical: 10,
+            }}
+            containerStyle={{
+              width: '100%',
+              height: 260,
+            }}
           >
-            <Text>{item.shortDescription}</Text>
+            <Text
+              style={{ fontSize: 18, textAlign: 'center', fontWeight: 'bold' }}
+            >
+              {item.name}
+            </Text>
+            <Text style={{ textAlign: 'center' }}>{item.shortDescription}</Text>
           </Card>
         </TouchableOpacity>
       )
@@ -48,28 +60,32 @@ class Adopt extends Component {
       <View
         style={{
           flex: 1,
-          // justifyContent: 'flex-start',
           alignItems: 'center',
           backgroundColor: '#ebebeb',
         }}
       >
-        <Tile
-          title="Adoption"
-          titleStyle={{ fontSize: 54 }}
-          caption="Meet our friendly cats"
-          captionStyle={{ fontSize: 24 }}
-          height={200}
-          featured
-          // onPress={() => navigate('CampsiteInfo', { campsiteId: item.id })}
-          imageSrc={require('../assets/images/main-cats3.jpg')}
-        />
         <ScrollView>
+          <Tile
+            title="Meet our Cats"
+            titleStyle={{ fontSize: 40, fontWeight: '500' }}
+            // caption="Meet our friendly cats"
+            // captionStyle={{ fontSize: 24 }}
+            height={200}
+            featured
+            imageSrc={{ uri: baseUrl + '/images/adopt-cover.jpg' }}
+          />
           <Text style={styles.textStyle}>
             If you are interested in adding a new pet to your family, we invite
             you to view the cats currently available for adoption. For more
             information about a specific cat click on their photo.
           </Text>
-          <View style={{ margin: 30 }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              justifyContent: 'flex-start',
+            }}
+          >
             {this.state.catList.map((cat) => (
               <RenderItem item={cat} />
             ))}
