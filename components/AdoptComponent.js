@@ -9,16 +9,17 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { Tile, Card } from 'react-native-elements'
-import { CATS } from '../shared/cats'
+import { connect } from 'react-redux'
+
 import { baseUrl } from '../shared/baseUrl'
 
-class Adopt extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      catList: CATS,
-    }
+const mapStateToProps = (state) => {
+  return {
+    cats: state.cats,
   }
+}
+
+class Adopt extends Component {
   static navigationOptions = {
     title: 'Adopt',
   }
@@ -68,8 +69,6 @@ class Adopt extends Component {
           <Tile
             title="Meet our Cats"
             titleStyle={{ fontSize: 40, fontWeight: '500' }}
-            // caption="Meet our friendly cats"
-            // captionStyle={{ fontSize: 24 }}
             height={200}
             featured
             imageSrc={{ uri: baseUrl + '/images/adopt-cover.jpg' }}
@@ -79,6 +78,7 @@ class Adopt extends Component {
             you to view the cats currently available for adoption. For more
             information about a specific cat click on their photo.
           </Text>
+
           <View
             style={{
               flexDirection: 'row',
@@ -86,7 +86,7 @@ class Adopt extends Component {
               justifyContent: 'flex-start',
             }}
           >
-            {this.state.catList.map((cat) => (
+            {this.props.cats.cats.map((cat) => (
               <RenderItem item={cat} />
             ))}
           </View>
@@ -103,4 +103,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Adopt
+export default connect(mapStateToProps)(Adopt)

@@ -6,11 +6,17 @@ import { createAppContainer } from 'react-navigation'
 import Home from './HomeComponent'
 import Visit from './VisitComponent'
 import Adopt from './AdoptComponent'
+import Favorites from './FavoritesComponent'
 import CatInfo from './CatInfoComponent'
 import { baseUrl } from '../shared/baseUrl'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { Icon } from 'react-native-elements'
-// import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'
+import { connect } from 'react-redux'
+import { fetchCats } from '../redux/ActionCreators'
+
+const mapDispatchToProps = {
+  fetchCats,
+}
 
 const HomeNavigator = createStackNavigator(
   {
@@ -64,7 +70,6 @@ const AdoptNavigator = createStackNavigator(
           />
           <Text style={styles.logoTextStyle}>Calico Cafe</Text>
         </TouchableOpacity>
-        // </View>
       ),
     }),
   },
@@ -99,10 +104,40 @@ const VisitNavigator = createStackNavigator(
   },
 )
 
+const FavoritesNavigator = createStackNavigator(
+  {
+    Favorites: { screen: Favorites },
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#383838',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        color: '#fff',
+      },
+      headerRight: (
+        <TouchableOpacity
+          style={{ flexDirection: 'row' }}
+          onPress={() => navigation.navigate('Home')}
+        >
+          <Image
+            source={{ uri: baseUrl + '/images/white_silhouette.png' }}
+            style={{ height: 25, width: 25, marginLeft: 10 }}
+          />
+          <Text style={styles.logoTextStyle}>Calico Cafe</Text>
+        </TouchableOpacity>
+      ),
+    }),
+  },
+)
+
 const TabNavigator = createBottomTabNavigator(
   {
     Home: { screen: HomeNavigator },
     Adopt: { screen: AdoptNavigator },
+    Favorites: { screen: FavoritesNavigator },
     Visit: { screen: VisitNavigator },
   },
   {
@@ -137,6 +172,15 @@ const TabNavigator = createBottomTabNavigator(
               color={tintColor}
             />
           )
+        } else if (routeName === 'Favorites') {
+          return (
+            <Icon
+              name="heart"
+              type="font-awesome"
+              fontSize={25}
+              color={tintColor}
+            />
+          )
         }
       },
     }),
@@ -154,6 +198,9 @@ const TabNavigator = createBottomTabNavigator(
 const AppNavigator = createAppContainer(TabNavigator)
 
 class Main extends Component {
+  componentDidMount() {
+    this.props.fetchCats()
+  }
   render() {
     return (
       <View
@@ -176,4 +223,4 @@ styles = StyleSheet.create({
   },
 })
 
-export default Main
+export default connect(null, mapDispatchToProps)(Main)
